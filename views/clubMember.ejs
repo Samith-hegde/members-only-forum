@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<head>
+    <title> <%= title %> </title>
+</head>
+
+<body>
+    <h1> <%= title %> </h1>
+    <p> Enter the secret code to become a member of the club: </p>
+    <form action="/clubMember" method="post">
+        <label for="secretCode">Secret code</label>
+        <input type="text" name="secretCode" placeholder="Secret code" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>

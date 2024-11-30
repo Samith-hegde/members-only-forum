@@ -8,6 +8,7 @@
     <h1><%= title %></h1>
     <% if (user) { %>
         <h2>Welcome to the forum, <%= user.username %></h2>
+        <h3> You are a <%= user.membershipStatus === 'free' ? 'Free User' : 'Club Member' %> </h3>
         <a href="/newPost">Create a new post</a>
         <a href="/posts">View all posts</a>
         <a href="/clubMember"> Become a club member! </a>

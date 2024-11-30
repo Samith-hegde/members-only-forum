@@ -2,6 +2,14 @@ const bcryptjs = require('bcryptjs');
 const passport = require('passport');
 const prisma = require('../config/prismaClient');
 
+const index = (req, res) => {
+    res.render('index', { title: 'Members-only Forum', user: req.user });
+};
+
+const signUpForm = (req, res) => {
+    res.render('signUp', { title: 'Sign Up' });
+};
+
 const signUp = async (req, res) => {
     try {
         const hashedPassword = await bcryptjs.hash(req.body.password, 10);
@@ -35,4 +43,4 @@ const logOut = (req, res, next) => {
     res.redirect('/');
 }
 
-module.exports = { signUp, logIn, logOut };
+module.exports = { index, signUpForm, signUp, logIn, logOut };

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> <%= title %> </title>
+    </head>
+
+    <body>
+        <h1>  <%= title %> </h1>
+        <form action="/newPost" method="post">
+            <label for="title">Title</label>
+            <input type="text" name="title" placeholder="Title" required>
+            <label for="textContent">Message</label>
+            <textarea name="textContent" placeholder="Message" required></textarea>
+            <button type="submit">Create post</button>
+        </form>
+    </body>
+</html>

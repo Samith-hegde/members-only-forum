@@ -16,11 +16,14 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
 const authRouter = require('./routes/authRouter');
+const newPostRouter = require('./routes/newPostRouter');
+//const postsRouter = require('./routes/postsRouter');
+const clubMemberRouter = require('./routes/clubMemberRouter');
 
+app.use('/newPost', newPostRouter);
+app.use('/clubMember', clubMemberRouter);
 app.use('/', authRouter);
-app.get('/', (req, res) => {
-    res.render('index', { title: 'Members-only Forum', user: req.user });
-});
+//app.use('/posts', postsRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
