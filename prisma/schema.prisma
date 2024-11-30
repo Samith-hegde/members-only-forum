@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Replace with your actual database connection string
+}
+
+model users {
+  userId               Int      @id @default(autoincrement()) // Auto-incrementing primary key
+  email            String   @unique                      // Unique and required email
+  username         String?  @unique                      // Optional unique username
+  firstName        String?                               // Optional first name
+  lastName         String?                               // Optional last name
+  membershipStatus String   @default("free")             // Default membership status
+  password         String                               // Password (hashed)
+  createdAt        DateTime @default(now())              // Auto-set join date
+
+  messages         messages[]                             // One-to-many relationship with messages
+}
+
+model messages {
+  messageId        Int      @id @default(autoincrement())       // Auto-incrementing primary key
+  title     String?                                      // Optional title
+  textContent      String                                      // Main content of the message
+  postedAt DateTime @default(now())                    // Auto-set posting time
+
+  user      users     @relation(fields: [userId], references: [userId], onDelete: Cascade) // Foreign key to User
+  userId    Int                                           // User ID as a foreign key
+}
