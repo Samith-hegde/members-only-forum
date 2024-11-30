@@ -1,15 +1,20 @@
 const bcryptjs = require('bcryptjs');
 const passport = require('passport');
-const pool = require('../config/database');
+const prisma = require('../config/prismaClient');
 
 const signUp = async (req, res) => {
     try {
         const hashedPassword = await bcryptjs.hash(req.body.password, 10);
 
-        const query = "INSERT INTO users (email, username, firstName, lastName, password) VALUES ($1, $2, $3, $4, $5)";
-
-        await pool.query(query,
-            [req.body.email, req.body.username, req.body.firstName, req.body.lastName, hashedPassword]);
+        const user = await prisma.users.create({
+            data: {
+                username: req.body.username,
+                email: req.body.email,
+                password: hashedPassword,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName
+            }
+        });
         res.redirect('/');
     } catch (error) {
         console.error(error);
@@ -22,8 +27,11 @@ const logIn = passport.authenticate('local', {
     failureRedirect: '/'
 });
 
-const logOut = (req, res) => {
-    req.logout();
+const logOut = (req, res, next) => {
+    req.logout((err) => {
+        if (err) {
+            return next(err);
+    }});
     res.redirect('/');
 }
 

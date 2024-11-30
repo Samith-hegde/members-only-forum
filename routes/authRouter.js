@@ -4,7 +4,7 @@ const passport = require('passport');
 const { signUp, logIn, logOut } = require('../controllers/authController'); 
 
 router.get('/signUp', (req, res) => {
-    res.render('signUp');
+    res.render('signUp', { title: 'Sign Up' });
 });
 
 router.post('/signUp', signUp);

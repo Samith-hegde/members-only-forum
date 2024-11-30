@@ -3,7 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 require('dotenv').config();
-require('./config/passport')(passport);
+require('./config/passport');
 
 const app = express();
 
@@ -15,11 +15,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
-const authRouter = require('./routes/auth');
+const authRouter = require('./routes/authRouter');
 
 app.use('/', authRouter);
 app.get('/', (req, res) => {
-    res.render('index', { user: req.user });
+    res.render('index', { title: 'Members-only Forum', user: req.user });
 });
 
 const PORT = process.env.PORT || 3000;
