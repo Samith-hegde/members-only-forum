@@ -17,13 +17,13 @@ app.use(express.urlencoded({ extended: false }));
 
 const authRouter = require('./routes/authRouter');
 const newPostRouter = require('./routes/newPostRouter');
-//const postsRouter = require('./routes/postsRouter');
+const postsRouter = require('./routes/postsRouter');
 const clubMemberRouter = require('./routes/clubMemberRouter');
 
 app.use('/newPost', newPostRouter);
 app.use('/clubMember', clubMemberRouter);
+app.use('/posts', postsRouter);
 app.use('/', authRouter);
-//app.use('/posts', postsRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

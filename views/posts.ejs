@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> <%= title %> </title>
+    </head>
+
+    <body>
+        <h1> <%= title %> </h1>
+        <% for (let message of messages) { %>
+            <h2> Author: <%= user.membershipStatus === 'club member' || user.userId === message.userId ? message.user.username : 'Anonymous' %> </h2>
+            <h3> Posted At: <%= user.membershipStatus === 'club member' || user.userId === message.userId ? message.postedAt : 'Anonymous' %> </h3>
+            <p><strong> <%= message.title %> </strong></p>
+            <p> <%= message.textContent %></p>
+        <% } %>
+        <a href="/">Home</a>
+        </body>
+</html>
