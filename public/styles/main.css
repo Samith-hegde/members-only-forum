@@ -1,0 +1,259 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+  }
+  
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+  }
+  
+  h2 {
+    font-size: 2em;
+    color: #34495e;
+  }
+  
+  h3 {
+    font-size: 1.5em;
+    color: #7f8c8d;
+  }
+  
+  p {
+    margin-bottom: 15px;
+  }
+  
+  /* Links */
+  a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+  }
+  
+  /* Navigation */
+  nav {
+    background-color: #2c3e50;
+    padding: 15px 0;
+    margin-bottom: 30px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin: 0 10px;
+  }
+  
+  nav ul li a {
+    color: #ecf0f1;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+  }
+  
+  nav ul li a:hover {
+    color: #3498db;
+    text-decoration: none;
+  }
+  
+  /* Forms */
+  form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto 30px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus,
+  textarea:focus {
+    border-color: #3498db;
+    outline: none;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+  }
+  
+  button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Messages and Posts */
+  .message, .post {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .message h2, .post h2 {
+    color: #2c3e50;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+  }
+  
+  .message h3, .post h3 {
+    color: #7f8c8d;
+    font-size: 1em;
+    margin-bottom: 15px;
+  }
+  
+  .message p, .post p {
+    line-height: 1.8;
+  }
+  
+  /* User info */
+  .user-info {
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .user-info h2 {
+    color: #2c3e50;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+  
+  .user-info h3 {
+    color: #7f8c8d;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+  }
+  
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .btn:hover {
+    background-color: #2980b9;
+    text-decoration: none;
+  }
+  
+  .btn-secondary {
+    background-color: #95a5a6;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #7f8c8d;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #34495e;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+  }
+  
+  footer p {
+    margin: 0;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .container {
+      width: 95%;
+    }
+  
+    nav ul li {
+      display: block;
+      margin: 10px 0;
+    }
+  
+    form {
+      padding: 20px;
+    }
+  
+    h1 {
+      font-size: 2em;
+    }
+  
+    h2 {
+      font-size: 1.7em;
+    }
+  
+    h3 {
+      font-size: 1.3em;
+    }
+  }
+  
+  

@@ -1,28 +1,41 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title> <%= title %> </title>
-  </head>
-
-  <body>
-    <h1><%= title %></h1>
-    <% if (user) { %>
-        <h2>Welcome to the forum, <%= user.username %></h2>
-        <h3> You are a <%= user.membershipStatus === 'free' ? 'Free User' : 'Club Member' %> </h3>
-        <a href="/newPost">Create a new post</a>
-        <a href="/posts">View all posts</a>
-        <a href="/clubMember"> Become a club member! </a>
-        <a href="/logOut">Logout</a>
-    <% } else { %>
-        <p> Welcome to the forum. Please log in. </p>
-        <form action="/logIn" method="post">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Log in</button>
-        </form>
-        <p> Or sign up if you do not have an account </p>
-        <a href="/signUp">Sign up</a>
-    <% } %>
-  </body>
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1><%= title %></h1>
+        <% if (user) { %>
+            <div class="user-info">
+                <h2>Welcome to the forum, <%= user.username %></h2>
+                <h3>You are a <%= user.membershipStatus === 'free' ? 'Free User' : 'Club Member' %></h3>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/newPost" class="btn">Create a new post</a></li>
+                    <li><a href="/posts" class="btn">View all posts</a></li>
+                    <li><a href="/clubMember" class="btn btn-secondary">Become a club member!</a></li>
+                    <li><a href="/logOut" class="btn btn-secondary">Logout</a></li>
+                </ul>
+            </nav>
+        <% } else { %>
+            <p>Welcome to the forum. Please log in.</p>
+            <form action="/logIn" method="post">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Log in</button>
+            </form>
+            <p>Or sign up if you do not have an account</p>
+            <a href="/signUp" class="btn">Sign up</a>
+        <% } %>
+    </div>
+    <footer>
+        <p>&copy; 2023 Your Forum Name. All rights reserved.</p>
+    </footer>
+</body>
 </html>

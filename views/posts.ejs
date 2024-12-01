@@ -1,17 +1,28 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title> <%= title %> </title>
-    </head>
-
-    <body>
-        <h1> <%= title %> </h1>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1><%= title %></h1>
         <% for (let message of messages) { %>
-            <h2> Author: <%= user.membershipStatus === 'club member' || user.userId === message.userId ? message.user.username : 'Anonymous' %> </h2>
-            <h3> Posted At: <%= user.membershipStatus === 'club member' || user.userId === message.userId ? message.postedAt : 'Anonymous' %> </h3>
-            <p><strong> <%= message.title %> </strong></p>
-            <p> <%= message.textContent %></p>
+            <div class="post">
+                <h2>Author: <%= user.membershipStatus === 'club member' || user.userId === message.userId ? message.user.username : 'Anonymous' %></h2>
+                <h3>Posted At: <%= user.membershipStatus === 'club member' || user.userId === message.userId ? message.postedAt : 'Anonymous' %></h3>
+                <p><strong><%= message.title %></strong></p>
+                <p><%= message.textContent %></p>
+            </div>
         <% } %>
-        <a href="/">Home</a>
-        </body>
+        <a href="/" class="btn">Home</a>
+        <a href="/newPost" class="btn">Create New Post</a>
+    </div>
+    <footer>
+        <p>&copy; 2023 Your Forum Name. All rights reserved.</p>
+    </footer>
+</body>
 </html>

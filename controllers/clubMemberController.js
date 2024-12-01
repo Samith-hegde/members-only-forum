@@ -6,6 +6,11 @@ const clubMemberForm = (req, res) => {
 
 const updateMembership = async (req, res) => {
     try {
+        if (req.user.membershipStatus === 'club member') {
+            res.send('You are already a club member!');
+            return;
+        }
+
         if (!req.body.secretCode || req.body.secretCode !== process.env.CLUB_SECRET) {
             res.send('Invalid code!');
             return;

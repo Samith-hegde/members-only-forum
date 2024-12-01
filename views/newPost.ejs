@@ -1,17 +1,26 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title> <%= title %> </title>
-    </head>
-
-    <body>
-        <h1>  <%= title %> </h1>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1><%= title %></h1>
         <form action="/newPost" method="post">
             <label for="title">Title</label>
-            <input type="text" name="title" placeholder="Title" required>
+            <input type="text" id="title" name="title" placeholder="Title" required>
             <label for="textContent">Message</label>
-            <textarea name="textContent" placeholder="Message" required></textarea>
+            <textarea id="textContent" name="textContent" placeholder="Message" required></textarea>
             <button type="submit">Create post</button>
         </form>
-    </body>
+        <a href="/" class="btn btn-secondary">Back to Home</a>
+    </div>
+    <footer>
+        <p>&copy; 2023 Your Forum Name. All rights reserved.</p>
+    </footer>
+</body>
 </html>

@@ -1,16 +1,25 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <title> <%= title %> </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
-
 <body>
-    <h1> <%= title %> </h1>
-    <p> Enter the secret code to become a member of the club: </p>
-    <form action="/clubMember" method="post">
-        <label for="secretCode">Secret code</label>
-        <input type="text" name="secretCode" placeholder="Secret code" required>
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <h1><%= title %></h1>
+        <p>Enter the secret code to become a member of the club:</p>
+        <form action="/clubMember" method="post">
+            <label for="secretCode">Secret code</label>
+            <input type="text" id="secretCode" name="secretCode" placeholder="Secret code" required>
+            <button type="submit">Submit</button>
+        </form>
+        <a href="/" class="btn btn-secondary">Back to Home</a>
+    </div>
+    <footer>
+        <p>&copy; 2023 Your Forum Name. All rights reserved.</p>
+    </footer>
 </body>
-
 </html>
