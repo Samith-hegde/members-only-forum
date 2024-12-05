@@ -15,6 +15,9 @@
                 <h2>Author: <%= user.membershipStatus === 'club member' || user.userId === message.userId ? message.user.username : 'Anonymous' %></h2>
                 <h3>Posted At: <%= user.membershipStatus === 'club member' || user.userId === message.userId ? message.postedAt : 'Anonymous' %></h3>
                 <p><strong><%= message.title %></strong></p>
+                <% if (message.category) { %>
+                    <p><strong>Category:</strong> <%= message.category.name %></p>
+                <% } %>
                 <p><%= message.textContent %></p>
                 <% if (user.isAdmin) { %>
                     <form action="/posts/deletePost" method="post">

@@ -13,8 +13,23 @@
         <form action="/newPost" method="post">
             <label for="title">Title</label>
             <input type="text" id="title" name="title" placeholder="Title" required>
+
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                <option value="">Select a category</option>
+                <% categories.forEach(category => { %>
+                    <option value="<%= category.id %>"><%= category.name %></option>
+                <% }) %>
+            </select>
+            
+            <% if (user.membershipStatus === 'club member') { %>
+                <label for="newCategory">Or add a new category:</label>
+                <input type="text" id="newCategory" name="newCategory" placeholder="New category name">
+            <% } %>
+            
             <label for="textContent">Message</label>
             <textarea id="textContent" name="textContent" placeholder="Message" required></textarea>
+
             <button type="submit">Create post</button>
         </form>
         <a href="/" class="btn btn-secondary">Back to Home</a>

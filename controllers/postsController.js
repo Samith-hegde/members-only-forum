@@ -4,7 +4,8 @@ const viewAllPosts = async (req, res) => {
     try {
         const messages = await prisma.messages.findMany({
             include: {
-                user: true
+                user: true,
+                category: true,
             }
         });
         res.render('posts', { title: 'Messages', messages, user: req.user });
@@ -16,14 +17,10 @@ const viewAllPosts = async (req, res) => {
 
 const deletePost = async (req, res) => {
     try {
-        if (!req.body.messageId) {
-            res.send('No message ID provided!');
-            return;
-        }
-
+        const { messageId } = req.body;
         const message = await prisma.messages.delete({
             where: {
-                messageId: parseInt(req.body.messageId)
+                messageId: parseInt(messageId)
             }
         });
         res.redirect('/posts');
