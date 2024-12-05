@@ -13,13 +13,18 @@
         <% if (user) { %>
             <div class="user-info">
                 <h2>Welcome to the forum, <%= user.username %></h2>
-                <h3>You are a <%= user.membershipStatus === 'free' ? 'Free User' : 'Club Member' %></h3>
+                <% if (user.isAdmin) { %>
+                    <h3>You are an Admin! </h3>
+                <% } else { %>
+                    <h3>You are a <%= user.membershipStatus === 'free' ? 'Free User' : 'Club Member' %></h3>
+                <% } %>
             </div>
             <nav>
                 <ul>
                     <li><a href="/newPost" class="btn">Create a new post</a></li>
                     <li><a href="/posts" class="btn">View all posts</a></li>
                     <li><a href="/clubMember" class="btn btn-secondary">Become a club member!</a></li>
+                    <li><a href="/admin" class="btn btn-secondary"> Become an admin </a></li>
                     <li><a href="/logOut" class="btn btn-secondary">Logout</a></li>
                 </ul>
             </nav>

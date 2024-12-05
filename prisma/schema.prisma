@@ -16,16 +16,27 @@ model users {
   membershipStatus String   @default("free")             // Default membership status
   password         String                               // Password (hashed)
   createdAt        DateTime @default(now())              // Auto-set join date
+  isAdmin          Boolean  @default(false)
 
   messages         messages[]                             // One-to-many relationship with messages
 }
 
 model messages {
   messageId        Int      @id @default(autoincrement())       // Auto-incrementing primary key
-  title     String?                                      // Optional title
+  title            String?                                      // Optional title
   textContent      String                                      // Main content of the message
-  postedAt DateTime @default(now())                    // Auto-set posting time
+  postedAt         DateTime @default(now())                    // Auto-set posting time
 
-  user      users     @relation(fields: [userId], references: [userId], onDelete: Cascade) // Foreign key to User
-  userId    Int                                           // User ID as a foreign key
+  user             users     @relation(fields: [userId], references: [userId], onDelete: Cascade) // Foreign key to User
+  userId           Int                                           // User ID as a foreign key
+
+  category         categories? @relation(fields: [categoryId], references: [id])
+  categoryId       Int?
+}
+
+model categories {
+  id               Int      @id @default(autoincrement())
+  name             String   @unique
+  
+  posts            messages[]
 }

@@ -16,6 +16,12 @@
                 <h3>Posted At: <%= user.membershipStatus === 'club member' || user.userId === message.userId ? message.postedAt : 'Anonymous' %></h3>
                 <p><strong><%= message.title %></strong></p>
                 <p><%= message.textContent %></p>
+                <% if (user.isAdmin) { %>
+                    <form action="/posts/deletePost" method="post">
+                        <input type="hidden" name="messageId" value="<%= message.messageId %>">
+                        <button type="submit">Delete Post</button>
+                    </form>
+                <% } %>
             </div>
         <% } %>
         <a href="/" class="btn">Home</a>

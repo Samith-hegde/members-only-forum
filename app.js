@@ -20,10 +20,12 @@ const authRouter = require('./routes/authRouter');
 const newPostRouter = require('./routes/newPostRouter');
 const postsRouter = require('./routes/postsRouter');
 const clubMemberRouter = require('./routes/clubMemberRouter');
+const adminRouter = require('./routes/adminRouter');
 
 app.use('/newPost', newPostRouter);
 app.use('/clubMember', clubMemberRouter);
 app.use('/posts', postsRouter);
+app.use('/admin', adminRouter);
 app.use('/', authRouter);
 
 const PORT = process.env.PORT || 3000;

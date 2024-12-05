@@ -14,4 +14,23 @@ const viewAllPosts = async (req, res) => {
     }
 }
 
-module.exports = { viewAllPosts };
+const deletePost = async (req, res) => {
+    try {
+        if (!req.body.messageId) {
+            res.send('No message ID provided!');
+            return;
+        }
+
+        const message = await prisma.messages.delete({
+            where: {
+                messageId: parseInt(req.body.messageId)
+            }
+        });
+        res.redirect('/posts');
+    } catch (error) {
+        console.error(error);
+        res.send('An error occurred: ' + error);
+    }
+}
+
+module.exports = { viewAllPosts, deletePost };
