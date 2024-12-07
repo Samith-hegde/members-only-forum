@@ -12,8 +12,8 @@
         <h1><%= title %></h1>
         <% for (let message of messages) { %>
             <div class="post">
-                <h2>Author: <%= user.membershipStatus === 'club member' || user.userId === message.userId ? message.user.username : 'Anonymous' %></h2>
-                <h3>Posted At: <%= user.membershipStatus === 'club member' || user.userId === message.userId ? message.postedAt : 'Anonymous' %></h3>
+                <h2>Author: <%= user.membershipStatus.trim() === 'club member' || user.userId === message.userId ? message.user.username : 'Anonymous' %></h2>
+                <h3>Posted At: <%= user.membershipStatus.trim() === 'club member' || user.userId === message.userId ? message.postedAt : 'Anonymous' %></h3>
                 <p><strong><%= message.title %></strong></p>
                 <% if (message.category) { %>
                     <p><strong>Category:</strong> <%= message.category.name %></p>
