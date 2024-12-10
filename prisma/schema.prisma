@@ -40,3 +40,10 @@ model categories {
   
   posts            messages[]
 }
+
+model Session {
+  id              String    @id @default(uuid())
+  sid             String    @unique
+  data            String
+  expires         DateTime
+}

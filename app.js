@@ -1,6 +1,8 @@
 const path = require('node:path');
 const express = require('express');
 const session = require('express-session');
+const PrismaSessionStore = require('./config/prismaSessionStore');
+const prisma = require('./config/prismaClient');
 const passport = require('passport');
 require('dotenv').config();
 require('./config/passport');
@@ -11,7 +13,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }));
+app.use(session({ secret: 'secret', resave: false, saveUninitialized: false,
+  store: new PrismaSessionStore(prisma),
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000
+  }
+  }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
