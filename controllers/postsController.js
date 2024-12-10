@@ -2,13 +2,39 @@ const prisma = require('../config/prismaClient');
 
 const viewAllPosts = async (req, res) => {
     try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = 5;
+        const skip = (page - 1) * limit;
+        const searchQuery = req.query.search || '';
+
+        const searchCondition = searchQuery ? {
+            OR: [
+                { title: { contains: searchQuery, mode: 'insensitive' } },
+                { textContent: { contains: searchQuery, mode: 'insensitive' } }
+            ]
+        } : {};
+
         const messages = await prisma.messages.findMany({
+            where: searchCondition,
             include: {
                 user: true,
                 category: true,
             }
         });
-        res.render('posts', { title: 'Messages', messages, user: req.user });
+
+        const totalMessages = messages.length;
+        const totalPages = Math.ceil(totalMessages / limit);
+
+        const renderMessages = messages.slice(skip, skip + limit);
+
+        res.render('posts', { 
+            title: 'Messages', 
+            messages: renderMessages, 
+            user: req.user,
+            currentPage: page,
+            totalPages,
+            searchQuery
+        });
     } catch (error) {
         console.error(error);
         res.send('An error occurred: ' + error);

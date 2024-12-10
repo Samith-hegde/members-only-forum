@@ -10,26 +10,56 @@
 <body>
     <div class="container">
         <h1><%= title %></h1>
-        <% for (let message of messages) { %>
-            <div class="post">
-                <h2>Author: <%= user.membershipStatus.trim() === 'club member' || user.userId === message.userId ? message.user.username : 'Anonymous' %></h2>
-                <h3>Posted At: <%= user.membershipStatus.trim() === 'club member' || user.userId === message.userId ? message.postedAt : 'Anonymous' %></h3>
-                <p><strong><%= message.title %></strong></p>
-                <% if (message.category) { %>
-                    <p><strong>Category:</strong> <%= message.category.name %></p>
-                <% } %>
-                <p><%= message.textContent %></p>
-                <% if (user.isAdmin) { %>
-                    <form action="/posts/deletePost" method="post">
-                        <input type="hidden" name="messageId" value="<%= message.messageId %>">
-                        <button type="submit">Delete Post</button>
-                    </form>
-                <% } %>
-            </div>
+
+        <form action="/posts" method="get" class="search-form">
+            <input type="text" name="search" placeholder="Search messages" value="<%= searchQuery %>">
+            <button type="submit">Search</button>
+        </form>
+
+        <% if (messages.length === 0) { %>
+            <p>No messages found.</p>
+        <% } else { %>
+            <% for (let message of messages) { %>
+                <div class="post">
+                    <h2>Author: <%= user.membershipStatus.trim() === 'club member' || user.userId === message.userId ? message.user.username : 'Anonymous' %></h2>
+                    <h3>Posted At: <%= user.membershipStatus.trim() === 'club member' || user.userId === message.userId ? message.postedAt : 'Anonymous' %></h3>
+                    <p><strong><%= message.title %></strong></p>
+                    <% if (message.category) { %>
+                        <p><strong>Category:</strong> <%= message.category.name %></p>
+                    <% } %>
+                    <p><%= message.textContent %></p>
+                    <% if (user.isAdmin) { %>
+                        <form action="/posts/deletePost" method="post">
+                            <input type="hidden" name="messageId" value="<%= message.messageId %>">
+                            <button type="submit">Delete Post</button>
+                        </form>
+                    <% } %>
+                </div>
+            <% } %>
         <% } %>
+    </div>
+
+    <div class="pagination">
+        <% if (currentPage > 1) { %>
+            <a href="?page=<%= currentPage - 1 %>" class="btn">Previous</a>
+        <% } %>
+        <% for (let i = 1; i <= totalPages; i++) { %>
+            <% if (i === currentPage) { %>
+                <span class="current-page"><%= i %></span>
+            <% } else { %>
+                <a href="?page=<%= i %>" class="btn"><%= i %></a>
+            <% } %>
+        <% } %>
+        <% if (currentPage < totalPages) { %>
+            <a href="?page=<%= currentPage + 1 %>" class="btn">Next</a>
+        <% } %>
+    </div>
+
+    <div class="links">
         <a href="/" class="btn">Home</a>
         <a href="/newPost" class="btn">Create New Post</a>
     </div>
+
     <footer>
         <p>&copy; 2023 Your Forum Name. All rights reserved.</p>
     </footer>
