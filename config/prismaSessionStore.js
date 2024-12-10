@@ -11,14 +11,15 @@ class PrismaSessionStore extends session.Store {
       const session = await this.prisma.session.findUnique({
         where: { sid },
       });
-      if (!session || session.expires < new Date()) {
-        if (session.expires < new Date()) {
-            await this.prisma.session.delete({
-              where: { sid },
-            });
-        }
+      if (!session) {
         return callback(null, null); // Session expired or not found
       }
+      if (session.expires < new Date()) {
+        await this.prisma.session.delete({
+          where: { sid },
+        });
+        return callback(null, null); // Session expired
+    }
       callback(null, JSON.parse(session.data));
     } catch (err) {
       callback(err);

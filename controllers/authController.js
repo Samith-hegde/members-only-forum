@@ -50,10 +50,25 @@ const signUp = [
     }
 }];
 
-const logIn = passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/'
-});
+const logIn = (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+      if (err) return next(err); 
+      if (!user) return res.redirect('/login'); 
+  
+      req.logIn(user, (err) => {
+        if (err) return next(err);
+  
+        if (req.body.rememberMe) {
+          req.session.cookie.maxAge = 24 * 60 * 60 * 1000; 
+        } else {
+          req.session.cookie.maxAge = 1000;
+        }
+  
+        return res.redirect('/');
+      });
+    })(req, res, next);
+  };
+  
 
 const logOut = (req, res, next) => {
     req.logout((err) => {

@@ -16,7 +16,8 @@ app.set('view engine', 'ejs');
 app.use(session({ secret: 'secret', resave: false, saveUninitialized: false,
   store: new PrismaSessionStore(prisma),
   cookie: {
-    maxAge: 24 * 60 * 60 * 1000
+    httpOnly: true,
+    maxAge: null,
   }
   }));
 app.use(passport.initialize());
